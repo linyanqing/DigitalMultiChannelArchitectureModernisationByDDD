@@ -1,0 +1,96 @@
+Case Study – Digital Multi-Channel Architecture
+(Fictional scenario: a payments and business-banking provider for small and medium merchants)
+
+
+Session format
+
+You will facilitate a collaborative architecture workshop with three stakeholders:
+  - Principal Engineer
+  - Engineering Lead
+  - Product Manager
+
+During the session you are expected to:
+  - build a shared understanding of the current state
+  - articulate the problems, goals and objectives
+  - propose a pragmatic target architecture and an adoption approach
+  - design and visualise the solution, considering:
+      - short-term vs long-term outcomes
+      - key risks and dependencies
+      - business and technology constraints
+  - explain the key design decisions and trade-offs
+
+Logistics
+  - 15 minutes of individual preparation to read the brief and note questions
+  - 90 minutes of workshop with the stakeholders (whiteboard / paper available)
+  - The facilitator keeps time and keeps the discussion focused on the goals
+
+
+Problem context
+
+The company's customer experience has evolved organically across several channels, each run by a
+separate team. This has produced inefficient customer journeys, inconsistent experiences between
+channels and slow feature delivery.
+
+The company wants a more coherent digital experience across web and mobile for two merchant
+journeys that are currently driven by paper forms:
+  1. new customer onboarding
+  2. in-life customer profile maintenance
+It also wants faster delivery and more efficient maintenance and operation of its digital channels.
+
+Business targets for the next two planning cycles:
+  - convert 80% of existing paper forms into digital self-service experiences
+  - increase speed of delivery by 30%
+Feature delivery must continue while the architecture is modernised.
+
+
+Current architecture and technology
+
+  - Web channel: legacy server-side rendered application (JSP).
+  - Mobile channels: native iOS (Swift) and native Android (Kotlin) apps.
+  - Backend: Java/Spring microservices exposing domain APIs (e.g. Customer, Banking, Lending,
+    Payments/Acquiring).
+  - Each channel has its own orchestration / BFF-style service, however:
+      - some channels bypass this layer and call domain APIs directly
+      - some domain APIs are channel-specific (e.g. built for the iOS app)
+      - business logic has leaked into the web/mobile apps and channel-specific layers
+  - Staff-facing web applications exist per domain and are fragmented in tech stack and architecture.
+
+
+Engineering and delivery practices
+
+  - Web, iOS and Android teams use different stacks and patterns for build, release, testing and
+    observability.
+  - Engineers' skills are specialised to the channel they support.
+  - Web releases more often than mobile, causing release coordination and feature-parity issues.
+
+
+Additional constraints
+
+  - Meaningful progress must be visible within two planning cycles (about 6 months).
+  - Feature delivery cannot stop for a full rebuild, and rebuilding everything from scratch is
+    not preferred.
+  - The enterprise direction is domain-aligned platforms and reusable APIs.
+  - Product wants consistent journeys but needs room for channel-specific differences where
+    they add value.
+
+
+Guidance
+
+  - Ask clarifying questions; the brief intentionally leaves gaps.
+  - Expect new information or constraints to be introduced during the session, which may
+    invalidate an earlier approach.
+  - Consider how a team would build, run and support the solution over the long term.
+  - Keep API discussion at a high level (e.g. separate APIs for performing a change vs viewing
+    history) rather than field-level detail.
+  - Prioritise the reasoning and the journey over reaching an "ideal" answer; a well-reasoned
+    discussion of one decision is worth more than many quick decisions.
+
+
+Focus areas
+
+  - translating digital strategy into architecture
+  - web and mobile target architecture
+  - cross-channel patterns
+  - digital platform capabilities
+  - paved-road thinking
+  - sequencing and adoption
